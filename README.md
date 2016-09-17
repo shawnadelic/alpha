@@ -22,7 +22,8 @@ To setup:
 
 5. Rename the `alpha` directory to your project name.
 
-6. Update imports in `manage.py` and `settings.base` to match your change in step 5.
+6. Update imports in `manage.py`, `alpha.wsgi`, and `settings.base` to match
+   your change in step 5.
 
 7. Run
 
