@@ -33,3 +33,9 @@ os.rename(settings_src_path, settings_dest_path)
 
 # Delete this setup script
 os.remove(os.path.abspath(os.path.realpath(__file__)))
+
+# If creating new repo, initialize new repo
+if delete_git:
+    subprocess.call(['git', 'init'])
+    subprocess.call(['git', 'add', '-A'])
+    subprocess.call(['git', 'commit', '-m', 'Initial commit'])
