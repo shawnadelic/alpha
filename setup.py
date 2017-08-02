@@ -28,4 +28,8 @@ for path in FILES_WITH_REPLACEMENTS:
     subprocess.call(['sed', '-i', '-e', 's/ALPHA/{}/g'.format(project_name.upper()), file_path])
     subprocess.call(['sed', '-i', '-e', 's/alpha/{}/g'.format(project_name.lower()), file_path])
 
+# Rename main project directory
 os.rename(settings_src_path, settings_dest_path)
+
+# Delete this setup script
+os.remove(os.path.abspath(os.path.realpath(__file__)))

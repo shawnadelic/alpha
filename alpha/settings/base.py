@@ -2,7 +2,6 @@
 Django settings for project.
 
 Created from the Alpha Django starter project,
-https://github.com/shawnadelic/alpha,
 based on default project for Django 1.11.
 
 For more information on this file, see
