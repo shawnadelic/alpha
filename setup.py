@@ -25,6 +25,9 @@ project_name = raw_input('Project name? (Example: SOME_SITE) ').lower()
 settings_src_path = os.path.join(base_path, 'alpha')
 settings_dest_path = os.path.join(base_path, project_name)
 
-subprocess.call(['sed', '-i', '-e', 's/ALPHA/{}/g'.format(project_name.upper()), base_settings_path])
+for fd in ['manage.py', 'alpha/urls.py', 'alpha/settings/base.py', 'alpha/wsgi.py']:
+    file_path = os.path.join(base_path, fd)
+    subprocess.call(['sed', '-i', '-e', 's/ALPHA/{}/g'.format(project_name.upper()), file_path])
+    subprocess.call(['sed', '-i', '-e', 's/alpha/{}/g'.format(project_name.lower()), file_path])
 
 os.rename(settings_src_path, settings_dest_path)
