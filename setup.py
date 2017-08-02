@@ -11,10 +11,10 @@ FILES_WITH_REPLACEMENTS = ['manage.py', 'alpha/urls.py', 'alpha/settings/base.py
 base_path = os.getcwd()
 base_settings_path = os.path.join(base_path, 'alpha/settings/base.py')
 
-# Ask whether or not to delete old git info
-delete_git = raw_input('Delete .git directory? ').lower()
-if delete_git in AFFIRMATIVE_RESPONSES:
-    print 'Deleting .git directory'
+# Ask whether or not to delete old repo info
+delete_repo = raw_input('Delete existing repo? ').lower()
+if delete_repo in AFFIRMATIVE_RESPONSES:
+    print 'Deleting existing repo'
     shutil.rmtree(os.path.join(base_path, '.git'))
 
 # Ask for project name and replace in files
@@ -35,7 +35,7 @@ os.rename(settings_src_path, settings_dest_path)
 os.remove(os.path.abspath(os.path.realpath(__file__)))
 
 # If creating new repo, initialize new repo
-if delete_git:
+if delete_repo:
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '-A'])
     subprocess.call(['git', 'commit', '-m', 'Initial commit'])
