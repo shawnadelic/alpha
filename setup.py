@@ -36,7 +36,8 @@ readme_path = os.path.join(base_path, 'README.md')
 os.remove(readme_path)
 
 # Write new README
-#with open(
+with open(readme_path, 'wb') as readme_file:
+    readme_file.write('{}\n{}'.format(project_name.capitalize(), '=' * len(project_name)))
 
 # Delete this setup script
 os.remove(os.path.abspath(os.path.realpath(__file__)))
