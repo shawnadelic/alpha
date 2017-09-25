@@ -12,8 +12,8 @@ base_path = os.getcwd()
 base_settings_path = os.path.join(base_path, 'alpha/settings/base.py')
 
 # Ask whether or not to delete old repo info
-delete_repo = raw_input('Delete existing repo? ').lower()
-if delete_repo in AFFIRMATIVE_RESPONSES:
+delete_repo = raw_input('Delete existing repo? ').lower() in AFFIRMATIVE_RESPONSES
+if delete_repo:
     print 'Deleting existing repo'
     shutil.rmtree(os.path.join(base_path, '.git'))
 
