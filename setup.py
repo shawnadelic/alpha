@@ -31,6 +31,13 @@ for path in FILES_WITH_REPLACEMENTS:
 # Rename main project directory
 os.rename(settings_src_path, settings_dest_path)
 
+# Delete the old README
+readme_path = os.path.join(base_path, 'README.md')
+os.remove(readme_path)
+
+# Write new README
+#with open(
+
 # Delete this setup script
 os.remove(os.path.abspath(os.path.realpath(__file__)))
 
