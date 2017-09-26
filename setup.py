@@ -8,42 +8,46 @@ import subprocess
 AFFIRMATIVE_RESPONSES = ('y', 'yes')
 FILES_WITH_REPLACEMENTS = ['manage.py', 'alpha/urls.py', 'alpha/settings/base.py', 'alpha/wsgi.py']
 
-base_path = os.getcwd()
-base_settings_path = os.path.join(base_path, 'alpha/settings/base.py')
+BASE_PATH = os.getcwd()
 
-# Ask whether or not to delete old repo info
-delete_repo = raw_input('Delete existing repo? ').lower() in AFFIRMATIVE_RESPONSES
-if delete_repo:
-    print 'Deleting existing repo'
-    shutil.rmtree(os.path.join(base_path, '.git'))
+def setup():
+    # Ask whether or not to delete old repo info
+    delete_repo = raw_input('Delete existing repo? ').lower() in AFFIRMATIVE_RESPONSES
+    if delete_repo:
+        print 'Deleting existing repo'
+        shutil.rmtree(os.path.join(BASE_PATH, '.git'))
 
-# Ask for project name and replace in files
-project_name = raw_input('Project name? (Example: SOME_SITE) ').lower()
+    # Ask for project name and replace in files
+    project_name = raw_input('Project name? (Example: SOME_SITE) ').lower()
 
-settings_src_path = os.path.join(base_path, 'alpha')
-settings_dest_path = os.path.join(base_path, project_name)
+    settings_src_path = os.path.join(BASE_PATH, 'alpha')
+    settings_dest_path = os.path.join(BASE_PATH, project_name)
 
-for path in FILES_WITH_REPLACEMENTS:
-    file_path = os.path.join(base_path, path)
-    subprocess.call(['sed', '-i', '-e', 's/ALPHA/{}/g'.format(project_name.upper()), file_path])
-    subprocess.call(['sed', '-i', '-e', 's/alpha/{}/g'.format(project_name.lower()), file_path])
+    for path in FILES_WITH_REPLACEMENTS:
+        file_path = os.path.join(BASE_PATH, path)
+        subprocess.call(['sed', '-i', '-e', 's/ALPHA/{}/g'.format(project_name.upper()), file_path])
+        subprocess.call(['sed', '-i', '-e', 's/alpha/{}/g'.format(project_name.lower()), file_path])
 
-# Rename main project directory
-os.rename(settings_src_path, settings_dest_path)
+    # Rename main project directory
+    os.rename(settings_src_path, settings_dest_path)
 
-# Delete the old README
-readme_path = os.path.join(base_path, 'README.md')
-os.remove(readme_path)
+    # Delete the old README
+    readme_path = os.path.join(BASE_PATH, 'README.md')
+    os.remove(readme_path)
 
-# Write new README
-with open(readme_path, 'wb') as readme_file:
-    readme_file.write('{}\n{}'.format(project_name.capitalize(), '=' * len(project_name)))
+    # Write new README
+    with open(readme_path, 'wb') as readme_file:
+        readme_file.write('{}\n{}'.format(project_name.capitalize(), '=' * len(project_name)))
 
-# Delete this setup script
-os.remove(os.path.abspath(os.path.realpath(__file__)))
+    # Delete this setup script
+    os.remove(os.path.abspath(os.path.realpath(__file__)))
 
-# If creating new repo, initialize new repo
-if delete_repo:
-    subprocess.call(['git', 'init'])
-    subprocess.call(['git', 'add', '-A'])
-    subprocess.call(['git', 'commit', '-m', 'Initial commit'])
+    # If creating new repo, initialize new repo
+    if delete_repo:
+        subprocess.call(['git', 'init'])
+        subprocess.call(['git', 'add', '-A'])
+        subprocess.call(['git', 'commit', '-m', 'Initial commit'])
+
+
+if __name__ == '__main__':
+    setup()
