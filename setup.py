@@ -30,7 +30,7 @@ def initialize_repo():
 
 def get_boolean_response(text):
     response = raw_input('{} '.format(text)).lower()
-    return resposne in ('y', 'yes')
+    return response in ('y', 'yes')
 
 
 def setup():
@@ -45,9 +45,7 @@ def setup():
     replace_in_files(project_name)
 
     # Rename main project directory
-    settings_src_path = os.path.join(BASE_PATH, 'alpha')
-    settings_dest_path = os.path.join(BASE_PATH, project_name)
-    os.rename(settings_src_path, settings_dest_path)
+    shutil.move('alpha', project_name)
 
     # Delete the old README and write new file
     readme_path = os.path.join(BASE_PATH, 'README.md')
