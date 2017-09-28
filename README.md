@@ -11,12 +11,17 @@ To setup:
 
         python setup.py
 
-3. Define the following environmental variables:
+3. Define the following environmental variables (usually in your .bashrc file):
 
        * [PROJECT_NAME]_SETTINGS_MODULE i.e., `project_name.settings.local`
        * [PROJECT_NAME]_SECRET_KEY, i.e. `gNR0PJG678CThj`
 
-4. Run
+4. If using virtualenv, make sure virtualenv is installed and run:
+
+        cd /your/project/path
+        virtualenv venv
+
+5. Run
 
         pip install -r requirements.txt
 
