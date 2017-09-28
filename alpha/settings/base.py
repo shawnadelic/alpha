@@ -1,5 +1,5 @@
 """
-Django settings for project.
+Django settings for alpha project.
 
 Created from the Alpha Django starter project,
 based on default project for Django 1.11.
@@ -17,12 +17,11 @@ from .utils import get_env_variable
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
+# Note: Some settings may be unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# Environment variable prefix
-PROJECT_NAME_PREFIX = "ALPHA"
+# Name for this project (used to set environment variables)
+PROJECT_NAME = "alpha"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable("SECRET_KEY")
@@ -54,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'alpha.urls'
+ROOT_URLCONF = '{}.urls'.format(PROJECT_NAME.lower())
 
 TEMPLATES = [
     {
@@ -72,18 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'alpha.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+WSGI_APPLICATION = '{}.wsgi.application'.format(PROJECT_NAME.lower())
 
 
 # Password validation
@@ -109,13 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 

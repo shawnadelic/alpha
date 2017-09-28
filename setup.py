@@ -23,7 +23,7 @@ def replace_in_files(project_name):
 
 
 def initialize_repo():
-    subprocess.call(['cd', base_path])
+    subprocess.call(['cd', BASE_PATH])
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '-A'])
     subprocess.call(['git', 'commit', '-m', 'Initial commit'])
