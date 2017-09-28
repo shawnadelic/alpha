@@ -12,8 +12,7 @@ FILES_WITH_REPLACEMENTS = [
     'alpha/wsgi.py',
 ]
 
-BASE_PATH = os.getcwd()
-README = 'README.md'
+BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 def replace_in_files(project_name):
@@ -24,6 +23,7 @@ def replace_in_files(project_name):
 
 
 def initialize_repo():
+    subprocess.call(['cd', base_path])
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '-A'])
     subprocess.call(['git', 'commit', '-m', 'Initial commit'])
@@ -43,14 +43,17 @@ def setup():
 
     # Ask for project name and replace in files
     project_name = raw_input('Project name? (Example: SOME_SITE) ').lower()
+    project_dest_dir = os.path.join(BASE_PATH, project_name)
     replace_in_files(project_name)
 
-    # Rename main project directory
-    shutil.move('alpha', project_name)
+    # Move main project directory
+    project_src_dir = os.path.join(BASE_PATH, 'alpha')
+    shutil.move(project_src_dir, project_dest_dir)
 
     # Delete the old README and write new file
-    os.remove(README)
-    with open(README, 'wb') as readme_file:
+    readme_path = os.path.join(BASE_PATH, 'README.md')
+    os.remove(readme_path)
+    with open(readme_path, 'wb') as readme_file:
         readme_str = '{}\n{}'.format(project_name.capitalize(), '=' * len(project_name))
         readme_file.write(readme_str)
 
