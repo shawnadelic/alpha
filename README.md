@@ -20,6 +20,7 @@ To setup:
 
         cd /your/project/path
         virtualenv venv
+        source venv/bin/activate
 
 5. Run
 
