@@ -13,6 +13,7 @@ FILES_WITH_REPLACEMENTS = [
 ]
 
 BASE_PATH = os.getcwd()
+README = 'README.md'
 
 
 def replace_in_files(project_name):
@@ -48,11 +49,10 @@ def setup():
     shutil.move('alpha', project_name)
 
     # Delete the old README and write new file
-    readme_path = os.path.join(BASE_PATH, 'README.md')
-    os.remove(readme_path)
-
-    with open(readme_path, 'wb') as readme_file:
-        readme_file.write('{}\n{}'.format(project_name.capitalize(), '=' * len(project_name)))
+    os.remove(README)
+    with open(README, 'wb') as readme_file:
+        readme_str = '{}\n{}'.format(project_name.capitalize(), '=' * len(project_name))
+        readme_file.write(readme_str)
 
     # Delete this setup script
     os.remove(os.path.abspath(os.path.realpath(__file__)))
