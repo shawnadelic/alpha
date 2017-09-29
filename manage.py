@@ -2,6 +2,8 @@
 import os
 import sys
 from alpha.settings.utils import get_env_variable
+import colored_traceback.always  # noqa
+
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", get_env_variable("SETTINGS_MODULE"))
