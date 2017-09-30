@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!--- FontAwesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+        <title>{% block title %}{% if page.title and page.title != "Home" %}{{ page.title }} - {% endif %}Alpha{% endblock %}</title>
+        {% load bootstrap3 %}
+    </head>
+    <body class="parallax">
+        <nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="200">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="/#"><span class="logo logo-medium">Alpha</span></a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+
+                        <li><a class="page-scroll" href="/#section-our-story">Our Story</a></li>
+                        <li><a class="page-scroll" href="/#section-what-we-do">What We Do</a></li>
+                        <li><a href="/accounts/register">Sign Up</a></li>
+                        <li><a class="page-scroll" href="/#section-contact-us">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content_container %}
+            <div class="container container-content">
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6"><p>
+                        <a href="/#section-home">Home</a><br>
+                        <a href="/#section-our-story">Our Story</a><br>
+                        <a href="/#section-what-we-do">What We Do</a><br>
+                        <a href="/#section-contact-us">Contact Us</a><br>
+                    </div>
+                    <div class="col-md-6 text-right"><p>
+                        <strong>Alpha</strong><br>
+                        111 Memory Ln<br>
+                        Los Angeles, CA 90000<br>
+                        <i class="fa fa-phone"></i>&nbsp; (555) 555-4567<br>
+                        <i class="fa fa-envelope-o"></i>&nbsp; <a href="mailto:contact@shawnhmh.com">contact@shawnhmh.com</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul>
+                            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook fa-3x"></i></a></li>
+                            <li><a href="https://www.twitter.com/"><i class="fa fa-twitter fa-3x"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fa fa-instagram fa-3x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
